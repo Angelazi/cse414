@@ -1,0 +1,26 @@
+A set of attributes X is called closed (with respect to a given set of functional dependencies) if X⁺ = X.
+Consider a relation with schema R(A,B,C,D) and an unknown set of functional dependencies.
+For each closed attribute set below, give a set of functional dependencies that is consistent with it.
+
+
+1. All subsets of {A,B,C,D} are closed.
+
+only trivial dependencies can exist i.e :
+A -> A
+B -> B
+C -> C
+D -> D
+
+2. The only closed subsets of {A,B,C,D} are {} and {A,B,C,D}.
+
+A -> B
+B -> C
+C -> D
+D -> A
+
+3. The only closed subsets of {A,B,C,D} are {}, {B,C}, and {A,B,C,D}.
+
+B -> C
+C -> B
+A -> {B,C,D}
+D -> {A,B,C}
