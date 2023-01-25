@@ -1,0 +1,9 @@
+#
+# create a single user with 0 balance
+create lak lak 0
+quit
+*
+#
+Created user lak
+Goodbye
+*

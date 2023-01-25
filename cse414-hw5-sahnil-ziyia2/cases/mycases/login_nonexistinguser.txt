@@ -1,0 +1,8 @@
+create usernew user1 10000
+login user2 user1
+quit
+*
+Created user usernew
+Login failed
+Goodbye
+*

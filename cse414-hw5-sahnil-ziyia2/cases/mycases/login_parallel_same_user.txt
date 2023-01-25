@@ -1,0 +1,31 @@
+#open two different terminal, login to same user
+#Terminal 1
+create userabc bad 1000
+login userabc bad
+quit
+*
+#scenario 1, terminal one succeeds in creation first
+Created user userabc
+Logged in as userabc
+Goodbye
+|
+#scenario 2, terminal one fails in creation first
+Failed to create user
+Logged in as userabc
+Goodbye
+*
+#Terminal 2
+create userabc bad 1000
+login userabc bad
+quit
+*
+#scenario 1, terminal two fails in creation first
+Failed to create user
+Logged in as userabc
+Goodbye
+|
+#scenario 2, terminal one succeeds in creation first
+Created user userabc
+Logged in as userabc
+Goodbye
+*
