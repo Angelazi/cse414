@@ -1,0 +1,11 @@
+USE geo;
+SELECT mountain_name.name AS  mountain,
+	      mountain_name.`height` AS  height,
+	      c_name.`-car_code` AS  country_code,
+	      c_name.name  AS  country_name
+FROM  world world_name,
+	    world_name.mondial.mountain mountain_name,
+	    split(mountain_name.`-country`, " ") split_value,
+	    world_name.mondial.country c_name
+WHERE c_name.`-car_code` = split_value
+ORDER BY int(height) DESC;

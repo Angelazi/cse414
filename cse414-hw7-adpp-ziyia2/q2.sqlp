@@ -1,0 +1,13 @@
+USE geo;
+SELECT COUNT(table1) AS num_religions,
+      country_name.name AS country,
+      country_name.population as population
+FROM world world_name,
+     world_name.mondial.country country_name,
+	   CASE WHEN is_array(country_name.religions)
+     THEN country_name.religions
+	   ELSE [country_name.religions]
+     END table1
+GROUP BY country_name.name,
+         country_name.population
+ORDER BY country_name.name ASC; 

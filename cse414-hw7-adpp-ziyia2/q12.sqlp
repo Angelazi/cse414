@@ -1,0 +1,35 @@
+USE geoindex;
+WITH midd_query AS
+    (SELECT split_value_1 AS country_code,
+     c.name AS cname,
+     m.name AS mountain,
+     s.name AS sea
+	   FROM mountain AS m,
+     country AS c,
+     sea AS s,
+	   split(m.`-country`, ' ') AS split_value_1,
+	   split(s.`-country`, ' ') AS split_value_2
+	   WHERE split_value_1 = c.`-car_code` AND split_value_2 = c.`-car_code`)
+SELECT DISTINCT group1.cname AS first_country,
+      group2.cname AS second_country,
+      temp1 AS mountains,
+      temp2 AS seas
+FROM  midd_query AS group1,
+      midd_query AS group2
+LET temp1 =
+   (SELECT mountain_name.name AS mountain
+	 FROM mountain AS mountain_name,
+	 split(mountain_name.`-country`, ' ') AS temp1_split_value_1,
+	 split(mountain_name.`-country`, ' ') AS temp1_split_value_2
+	 WHERE temp1_split_value_1 = group1.country_code
+	 AND temp1_split_value_2 = group2.country_code),
+   temp2 =
+   (SELECT sea_name.name AS sea
+	 FROM sea AS sea_name,
+	 split(sea_name.`-country`, ' ') AS temp2_split_value_1,
+	 split(sea_name.`-country`, ' ') AS temp2_split_value_2
+	 WHERE temp2_split_value_1 = group1.country_code
+	 AND temp2_split_value_2 = group2.country_code)
+WHERE group2.cname >group1.cname AND
+      group1.mountain = group2.mountain AND
+      group1.sea = group2.sea;

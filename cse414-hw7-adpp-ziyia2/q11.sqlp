@@ -1,0 +1,27 @@
+-- The run time is 3.14 sec.
+USE geoindex;
+SELECT DISTINCT table1.country as first_country,
+      table2.country as second_country
+FROM
+	  (SELECT DISTINCT mountain_name.name as mountain,
+            sea_name.name as sea,
+            country_name.name as country
+	   FROM   mountain mountain_name,
+            sea sea_name,
+            country country_name,
+	          split(mountain_name.`-country`, ' ') as split_value_1,
+	          split(sea_name.`-country`, ' ') as split_value_2
+	   WHERE  split_value_1 = country_name.`-car_code` AND split_value_2 = country_name.`-car_code`) AS table1,
+
+      (SELECT DISTINCT mountain_name.name as mountain,
+            sea_name.name as sea,
+            country_name.name as country
+      FROM  mountain mountain_name,
+             sea sea_name,
+             country country_name,
+	          split(mountain_name.`-country`, ' ') as split_value_1,
+	          split(sea_name.`-country`, ' ') as split_value_2
+	    WHERE split_value_1 = country_name.`-car_code` AND split_value_2 = country_name.`-car_code`) AS table2
+WHERE table2.country > table1.country AND
+      table1.mountain = table2.mountain AND
+      table1.sea = table2.sea;

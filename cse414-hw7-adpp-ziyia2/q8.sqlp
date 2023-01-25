@@ -1,0 +1,15 @@
+USE geo;
+
+SELECT country_name.`-car_code` AS country_code,
+       country_name.name AS country_name,
+       country_name.`-area` AS area
+FROM world world_name,
+     world_name.mondial.country country_name
+LET temp =
+    (SELECT sea_name.name AS sea
+	  FROM world_name.mondial.sea sea_name,
+	  split(sea_name.`-country`, " ") split_value
+	  WHERE country_name.`-car_code` = split_value
+	  GROUP BY sea_name.name)
+WHERE   coll_count(temp) = 0
+ORDER BY float(country_name.`-area`) DESC;
