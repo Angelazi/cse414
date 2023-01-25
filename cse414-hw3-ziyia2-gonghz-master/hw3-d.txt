@@ -1,0 +1,5 @@
+My experience on using this DBMS cloud service is not very good, but it is indeed convenient and have advantages. 
+First of all, it is easy to access the data from any local devices, efficient in storing data in a manageable way. 
+In addition, I feel our privacy can be ensured since there are many settings on managing security issues, such as 
+the two-factor authentification when log in. However, due to the limitation money on the monthly plan, the speed
+to process the data is pretty low.
